@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>房源海报</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .poster {
+      width: 750px;
+      height: 1334px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      position: relative;
+      font-family: "Microsoft YaHei", sans-serif;
+      color: white;
+      overflow: hidden;
+    }
+
+    .header {
+      padding: 60px 40px 30px;
+    }
+
+    .title {
+      font-size: 36px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 24px;
+      opacity: 0.9;
+    }
+
+    .content {
+      background: white;
+      border-radius: 40px 40px 0 0;
+      padding: 40px;
+      height: 100%;
+      margin-top: 40px;
+      color: #333;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .info-item {
+      background: #f8f9fa;
+      border-radius: 20px;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .info-label {
+      font-size: 24px;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .info-value {
+      font-size: 36px;
+      font-weight: bold;
+      color: #e74c3c;
+    }
+
+    .highlight {
+      color: #e74c3c;
+      font-weight: bold;
+    }
+
+    .features {
+      margin-top: 40px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      background: #e74c3c;
+      border-radius: 50%;
+      margin-right: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 40px;
+      left: 40px;
+      right: 40px;
+      text-align: center;
+      font-size: 24px;
+      color: #666;
+    }
+
+    .qrcode {
+      position: absolute;
+      bottom: 40px;
+      right: 40px;
+      width: 120px;
+      height: 120px;
+      background: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="poster">
+    <div class="header">
+      <div class="title">精品房源推荐</div>
+      <div class="subtitle">本小区性价比最高的房源</div>
+    </div>
+
+    <div class="content">
+      <h2 style="font-size: 48px; color: #333; margin-bottom: 20px">
+        总价 <span class="highlight">{{formatPrice price}}</span>
+      </h2>
+
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-label">面积</div>
+          <div class="info-value">{{area}}平</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">赠送</div>
+          <div class="info-value">{{gift}}平</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">户型</div>
+          <div class="info-value">{{layout}}</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">装修</div>
+          <div class="info-value">{{decoration}}</div>
+        </div>
+      </div>
+
+      <div class="features">
+        {{#if hasParking}}
+        <div class="feature-item">
+          <div class="feature-icon">✓</div>
+          <span>带车位：{{parkingPrice}}万</span>
+        </div>
+        {{/if}}
+
+        <div class="feature-item">
+          <div class="feature-icon">✓</div>
+          <span>附加面积：{{extraArea}}平</span>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">✓</div>
+          <span>楼层：{{floor}}</span>
+        </div>
+
+        {{#ifCond taxFree '==' 'true'}}
+        <div class="feature-item">
+          <div class="feature-icon">✓</div>
+          <span>无增值税</span>
+        </div>
+        {{/ifCond}}
+      </div>
+
+      <div class="footer">咨询电话：400-000-0000</div>
+
+      <div class="qrcode">
+        <!-- 二维码占位 -->
+        <div style="color: #999; font-size: 20px">扫码查看</div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
